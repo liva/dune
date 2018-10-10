@@ -1,0 +1,11 @@
+/*
+ * Hello World
+ */
+#ifndef SAMPLE_H_
+#define SAMPLE_H_
+#include <asm/apic.h>
+
+IMPORT_SYMBOL_PROLOGUE
+
+IMPORT_SYMBOL(default_send_IPI_single);
+#endif  /* SAMPLE_H_ */

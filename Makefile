@@ -1,8 +1,11 @@
 LIBC	= eglibc-2.14/eglibc-build/libc.so
 SUBDIRS	= kern libdune
 
-all: $(SUBDIRS)
+all: kern/imported.h $(SUBDIRS)
 libc: $(LIBC)
+
+kern/imported.h: kern/imported.h.in
+	sh -c "sudo python kern/import-kernel-symbols.py kern/imported.h.in /boot/System.map-$(shell uname -r)" > kern/imported.h
 
 $(SUBDIRS):
 	$(MAKE) -C $(@)

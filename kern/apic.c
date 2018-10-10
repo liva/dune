@@ -2,6 +2,7 @@
 
 #include <linux/mm.h>
 #include <asm/ipi.h>
+#include "imported.h"
 
 #include "dune.h"
 
@@ -69,7 +70,7 @@ static void apic_send_ipi_x2(u8 vector, u32 destination_apic_id) {
  * [destination_apic_id] is the ID of the local APIC that will receive the IPI.
  */
 static void apic_send_ipi_x(u8 vector, u8 destination_apic_id) {
-	__default_send_IPI_dest_field(destination_apic_id, vector, APIC_DEST_PHYSICAL);
+  IMPORTED(default_send_IPI_single)(destination_apic_id, vector);
 }
 
 /* apic_send_ipi
